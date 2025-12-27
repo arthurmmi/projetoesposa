@@ -1,38 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { fetchViagens, fetchPlaces, fetchMetas } from './apiService';
 
-// 🚨 1. Importar o BrowserRouter aqui. Ele é o "motor" da navegação.
-import { BrowserRouter } from 'react-router-dom';
+const App = () => {
+    const [viagens, setViagens] = useState([]);
+    const [places, setPlaces] = useState([]);
+    const [metas, setMetas] = useState([]);
 
-// Importando os componentes (Seus caminhos originais)
-import WelcomeScreen from './components/WelcomeScreen/WelcomeScreen';
-import MainAppContent from './components/MainAppContent/MainAppContent';
+    useEffect(() => {
+        const loadData = async () => {
+            setViagens(await fetchViagens());
+            setPlaces(await fetchPlaces());
+            setMetas(await fetchMetas());
+        };
+        loadData();
+    }, []);
 
-// Importando o CSS global
-import './App.css';
+    return (
+        <div>
+            <h1>Viagens</h1>
+            <pre>{JSON.stringify(viagens, null, 2)}</pre>
 
-function App() {
-  // Sua lógica original de estado continua intacta
-  const [showWelcome, setShowWelcome] = useState(true);
+            <h1>Lugares Visitados</h1>
+            <pre>{JSON.stringify(places, null, 2)}</pre>
 
-  const handleStartApp = () => {
-    setShowWelcome(false);
-  };
-
-  return (
-      // 🚨 2. Envelopamos TUDO com o BrowserRouter.
-      // Isso permite que qualquer componente lá dentro (como o VisitedPlaces) use o botão de voltar.
-      <BrowserRouter>
-        <div className="App">
-          {showWelcome ? (
-              // Se showWelcome for verdadeiro, exibe a tela inicial
-              <WelcomeScreen onStartApp={handleStartApp} />
-          ) : (
-              // Caso contrário (após clicar), exibe o menu principal
-              <MainAppContent />
-          )}
+            <h1>Metas Financeiras</h1>
+            <pre>{JSON.stringify(metas, null, 2)}</pre>
         </div>
-      </BrowserRouter>
-  );
-}
+    );
+};
 
 export default App;
