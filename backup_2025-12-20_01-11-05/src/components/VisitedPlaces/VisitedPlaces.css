@@ -1,0 +1,501 @@
+/* --- CONTAINER PRINCIPAL --- */
+.places-container {
+    background-color: #f0f8ff; /* Mantendo o fundo Azul Gelo */
+    /* Trocamos a borda sólida por uma sombra elegante */
+    box-shadow: 0 10px 25px rgba(0, 86, 145, 0.15);
+    border-radius: 20px; /* Bordas bem arredondadas */
+    max-width: 800px;
+    margin: 0 auto; /* Centraliza na tela */
+    padding: 20px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.6); /* Borda sutil de vidro */
+}
+
+/* --- TÍTULO --- */
+.places-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.2em; /* Um pouco maior */
+    font-weight: 700;
+    /* Gradiente no texto para ficar chique */
+    background: -webkit-linear-gradient(#005691, #00a8e8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+/* --- ABAS (TABS) --- */
+.category-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.tab-btn {
+    padding: 12px 25px;
+    font-size: 1em;
+    font-weight: 600;
+    border: none; /* Sem borda preta */
+    background-color: #e1f5fe; /* Fundo bem clarinho */
+    color: #005691;
+    border-radius: 50px; /* Formato de pílula */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.tab-btn:hover {
+    transform: translateY(-2px); /* Sobe um pouquinho */
+    background-color: #b3e5fc;
+}
+
+/* Aba Ativa (A selecionada) */
+.tab-btn.active {
+    /* Gradiente Azul Bonito */
+    background: linear-gradient(135deg, #0077be 0%, #00a8e8 100%);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 119, 190, 0.4); /* Brilho azul */
+}
+
+/* --- FORMULÁRIO --- */
+.add-place-form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    /* Sombra flutuante */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f0f0f0;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.add-place-form h3 {
+    margin: 0 0 10px 0;
+    color: #005691;
+    font-size: 1.4em;
+}
+
+/* Inputs e Selects mais bonitos */
+.add-place-form input,
+.add-place-form select,
+.add-place-form textarea {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    border: 2px solid #eef2f5; /* Borda cinza bem clara */
+    background-color: #f9fbfd;
+    font-family: 'Inter', sans-serif;
+    font-size: 1em;
+    color: #333;
+    transition: border-color 0.3s, background-color 0.3s;
+    box-sizing: border-box;
+}
+
+/* Quando clica para digitar */
+.add-place-form input:focus,
+.add-place-form select:focus,
+.add-place-form textarea:focus {
+    outline: none;
+    border-color: #00a8e8; /* Borda azul brilhante */
+    background-color: #fff;
+}
+
+.add-place-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* --- BOTÃO ADICIONAR (PRINCIPAL) --- */
+.add-button {
+    background: linear-gradient(to right, #0077be, #005691);
+    color: white;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+}
+
+.add-button:hover {
+    transform: scale(1.02); /* Cresce um pouco */
+    box-shadow: 0 5px 15px rgba(0, 86, 145, 0.3);
+}
+
+.add-button:active {
+    transform: scale(0.98);
+}
+
+/* --- ESTRELAS --- */
+.star-rating {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 5px 0;
+}
+
+.star {
+    font-size: 2.2em;
+    color: #e0e0e0; /* Cinza claro quando vazia */
+    cursor: pointer;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.star.filled {
+    color: #FFD700; /* Dourado */
+    filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.4)); /* Brilho na estrela */
+}
+
+.star:hover {
+    transform: scale(1.2) rotate(5deg);
+}
+
+/* --- LISTA DE ITENS --- */
+.places-list {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 10px;
+    /* Scrollbar bonita para Chrome/Safari */
+}
+
+.places-list::-webkit-scrollbar {
+    width: 8px;
+}
+.places-list::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+}
+
+.place-item {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+    border: 1px solid #f0f0f0;
+    position: relative;
+    transition: transform 0.2s;
+    border-left: 5px solid #00a8e8; /* Detalhe colorido na esquerda */
+}
+
+.place-item:hover {
+    transform: translateY(-3px); /* Efeito de levantar o card */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.place-item h3 {
+    margin: 0 0 8px 0;
+    color: #005691;
+    font-size: 1.5em;
+}
+
+.place-notes {
+    font-style: italic;
+    color: #666;
+    line-height: 1.5;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+/* Mensagem de vazio */
+.empty-list-message {
+    color: #888;
+    font-style: italic;
+    margin-top: 30px;
+    background-color: rgba(255,255,255,0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* --- BOTÃO DE EXCLUIR (X) --- */
+.delete-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #fff;
+    color: #ff6b6b; /* Vermelho suave */
+    border: 2px solid #ffe3e3;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 1em;
+    font-weight: bold;
+    display: flex;           /* Centralizar perfeitamente o X */
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    z-index: 5;
+}
+
+.delete-button:hover {
+    background-color: #ff6b6b;
+    color: white;
+    border-color: #ff6b6b;
+    transform: rotate(90deg); /* Gira ao passar o mouse */
+}
+
+/* --- MODAL DE CONFIRMAÇÃO (Melhorado) --- */
+.confirm-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 50, 80, 0.6); /* Azul escuro transparente */
+    backdrop-filter: blur(3px); /* Desfoca o fundo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    animation: fadeIn 0.3s ease;
+}
+
+.confirm-modal-box {
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    text-align: center;
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efeito elástico */
+    max-width: 400px;
+    width: 90%;
+}
+
+@keyframes popIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.confirm-modal-box h3 {
+    color: #e63946;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.modal-btn {
+    padding: 10px 25px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s;
+}
+
+.modal-btn.cancel {
+    background-color: #f1f3f5;
+    color: #555;
+}
+.modal-btn.confirm {
+    background-color: #e63946;
+    color: white;
+    box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3);
+}
+.modal-btn:hover {
+    transform: scale(1.05);
+}
+/* --- ESTILOS DE EDIÇÃO --- */
+
+/* Caixa do formulário quando está editando (Borda amarela suave) */
+.add-place-form.editing-mode {
+    border: 2px solid #ffd700;
+    background-color: #fffdf5;
+}
+
+/* Área dos botões do formulário */
+.form-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* Botão Cancelar Edição */
+.cancel-button {
+    flex: 1; /* Ocupa espaço igual */
+    background-color: #f1f3f5;
+    color: #555;
+    border: 1px solid #ccc;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 10px;
+}
+
+.cancel-button:hover {
+    background-color: #e9ecef;
+}
+
+/* Ajuste no botão Adicionar para ficar ao lado do cancelar */
+.add-button {
+    flex: 2; /* O botão de salvar é maior */
+}
+
+
+/* --- BOTÕES NO CARD (Editar e Excluir) --- */
+
+.card-actions {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    gap: 8px; /* Espaço entre o lápis e o X */
+    z-index: 5;
+}
+
+/* Resetando a posição absoluta do botão delete antigo para usar o flexbox acima */
+.delete-button {
+    position: static; /* Remove o absolute antigo */
+    width: 32px;
+    height: 32px;
+    /* Mantém o resto do estilo que já criamos */
+}
+
+/* Novo Botão Editar (Lápis) */
+.edit-button {
+    background-color: #fff;
+    color: #0077be; /* Azul */
+    border: 2px solid #b3e5fc;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding-bottom: 3px; /* Pequeno ajuste visual pro lápis */
+}
+
+.edit-button:hover {
+    background-color: #0077be;
+    color: white;
+    border-color: #0077be;
+    transform: scale(1.1);
+}
+/* =========================================
+   📱 VERSÃO MOBILE (CELULAR)
+   ========================================= */
+@media (max-width: 768px) {
+
+    /* 1. Arruma o container principal para não vazar a tela */
+    .places-container {
+        width: 90%; /* Ocupa 90% da largura da tela */
+        max-width: 100%;
+        margin: 20px auto; /* Centraliza na tela */
+        padding: 15px; /* Diminui o espaço interno */
+        border-radius: 15px;
+    }
+
+    /* 2. Diminui o tamanho do título */
+    .places-title {
+        font-size: 2.2em;
+        line-height: 1.2;
+        margin-bottom: 20px;
+    }
+
+    /* 3. Ajusta os botões de abas (Restaurante, Viagem...) */
+    .category-tabs {
+        flex-wrap: wrap; /* Se não couber, desce pra linha de baixo */
+        gap: 8px;
+    }
+
+    .tab-btn {
+        font-size: 0.9em; /* Letra um pouco menor */
+        padding: 8px 12px;
+        flex: 1 1 auto; /* Faz os botões esticarem para preencher espaço */
+        min-width: 30%; /* Tamanho mínimo */
+    }
+
+    /* 4. Arruma o formulário */
+    .add-place-form {
+        padding: 20px; /* Menos espaço interno */
+        width: 100%;
+        box-sizing: border-box; /* Garante que a borda conte no tamanho total */
+    }
+
+    /* 5. Garante que os campos de texto não estourem a tela */
+    .add-place-form input,
+    .add-place-form select,
+    .add-place-form textarea {
+        width: 100%;
+        max-width: 100%;
+        font-size: 16px; /* Tamanho 16px evita que o iPhone dê zoom sozinho */
+    }
+
+    /* 6. Botões de ação (Cancelar e Salvar) um em cima do outro no celular */
+    .form-buttons {
+        flex-direction: column; /* Empilha verticalmente */
+    }
+
+    .cancel-button,
+    .add-button {
+        width: 100%; /* Botão ocupa a largura toda */
+        margin-top: 10px;
+    }
+}
+/* --- BOTÃO DE VOLTAR AO MENU --- */
+
+.header-actions {
+    display: flex;
+    justify-content: flex-start; /* Alinha à esquerda */
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.back-menu-btn {
+    background-color: #fff;
+    border: 2px solid #b0e0e6; /* Borda azul suave */
+    color: #005691;
+    padding: 8px 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.95em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Espaço entre a seta e o texto */
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.back-menu-btn:hover {
+    background-color: #0077be;
+    color: white;
+    border-color: #0077be;
+    transform: translateX(-5px); /* Efeito de mover pra esquerda */
+}
+
+/* Ajuste para Mobile: Garante que o botão não fique gigante */
+@media (max-width: 768px) {
+    .header-actions {
+        margin-bottom: 5px;
+    }
+
+    .back-menu-btn {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+}

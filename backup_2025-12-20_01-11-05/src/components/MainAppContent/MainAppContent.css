@@ -1,0 +1,684 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap');
+
+/* --- VARIÁVEIS DE TEMA (MODERNO) --- */
+:root {
+    --primary-blue: #0277bd;
+    --deep-blue: #01579b;
+    --ocean-light: #e1f5fe;
+    --gold-accent: #ffd700;
+    --text-dark: #2c3e50;
+    --text-light: #546e7a;
+    --glass-bg: rgba(255, 255, 255, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --shadow-soft: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+/* --- ESTILOS GERAIS DO CONTAINER --- */
+.main-app-container {
+    padding: 0;
+    min-height: 100vh;
+    color: var(--text-dark);
+    font-family: 'Inter', sans-serif;
+    animation: fadeIn 1s ease-out;
+    /* Fundo melhorado: Gradiente mais profundo e rico "Oceanic Deep" */
+    background: radial-gradient(circle at 50% 10%, #4fc3f7 0%, #29b6f6 30%, #0288d1 70%, #01579b 100%);
+    overflow: hidden;
+    position: relative;
+    display: block;
+}
+
+/* ... (rest of CSS) ... */
+
+/* --- HOME SCREEN GRID (RESTAURADO & POLIDO) --- */
+.windows-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    /* Espaçamento reduzido de 30px para 20px */
+    padding: 0 20px;
+    max-width: 950px;
+    /* Leve ajuste na largura */
+    margin: 30px auto;
+    z-index: 10;
+    position: relative;
+    justify-items: center;
+}
+
+/* Animação "Dentro da Água" (Flutuação com descompasso) */
+@keyframes waterFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    33% {
+        transform: translateY(-6px) rotate(1deg);
+    }
+
+    66% {
+        transform: translateY(4px) rotate(-1deg);
+    }
+}
+
+.app-window {
+    background: linear-gradient(180deg, rgba(225, 245, 254, 0.85) 0%, rgba(179, 229, 252, 0.85) 100%);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 25px;
+    width: 100%;
+    height: 130px;
+    /* Um pouco mais alto */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    text-align: center;
+    color: #01579b;
+    font-weight: 700;
+    font-size: 1.15rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    user-select: none;
+    text-shadow: none;
+
+    /* Aplica a animação de flutuação */
+    animation: waterFloat 6s ease-in-out infinite;
+}
+
+/* Descompasso na animação para parecer orgânico */
+.app-window:nth-child(odd) {
+    animation-duration: 7s;
+    animation-delay: 0.5s;
+}
+
+.app-window:nth-child(even) {
+    animation-duration: 6s;
+    animation-delay: 0s;
+}
+
+.app-window:nth-child(3n) {
+    animation-duration: 8s;
+    animation-delay: 1s;
+}
+
+.app-window:hover {
+    animation-play-state: paused;
+    /* Para ao passar o mouse */
+    transform: translateY(-8px) scale(1.05);
+    /* Sobe e cresce */
+    background: linear-gradient(180deg, #fff 0%, #e1f5fe 100%);
+    box-shadow: 0 20px 40px rgba(1, 87, 155, 0.3);
+    border-color: #fff;
+    z-index: 20;
+}
+
+/* Centraliza módulos quando ativos */
+.main-app-container.module-active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: hidden;
+    /* Scroll movido para dentro dos containers */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- ELEMENTOS FLUTUANTES (PEIXES E CORAÇÕES) --- */
+.floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.floating-elements span {
+    position: absolute;
+    top: 110%;
+    opacity: 0;
+    animation: drift 20s linear infinite;
+    z-index: 1;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+@keyframes drift {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.7;
+    }
+
+    90% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translateY(-110vh) translateX(10vw) rotate(15deg);
+        opacity: 0;
+    }
+}
+
+.floating-elements span:nth-child(1) {
+    left: 5%;
+    font-size: 30px;
+    animation-duration: 25s;
+}
+
+.floating-elements span:nth-child(2) {
+    left: 15%;
+    font-size: 20px;
+    animation-duration: 20s;
+    animation-delay: 3s;
+    transform: translateX(-5vw);
+}
+
+.floating-elements span:nth-child(3) {
+    left: 80%;
+    font-size: 40px;
+    animation-duration: 18s;
+    animation-delay: 1s;
+}
+
+.floating-elements span:nth-child(4) {
+    left: 30%;
+    font-size: 25px;
+    animation-duration: 22s;
+    animation-delay: 5s;
+    transform: translateX(-3vw);
+}
+
+.floating-elements span:nth-child(5) {
+    left: 90%;
+    font-size: 30px;
+    animation-duration: 28s;
+    animation-delay: 2s;
+}
+
+/* --- CONTAINER DO MÓDULO (TIMELINE) --- */
+.module-container {
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    max-width: 100%;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+    z-index: 10;
+}
+
+.timeline-container {
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 20px 0;
+    background: transparent;
+    /* Importante para ver o fundo */
+    position: relative;
+    scroll-behavior: smooth;
+    display: block;
+    /* Remove flex da try anterior */
+    scroll-snap-type: y mandatory;
+    /* Implementa o efeito ímã */
+    scroll-padding-top: 40vh;
+    /* Aumentado para descer mais o tópico e alinhar com o barco */
+}
+
+/* Custom Scrollbar */
+.timeline-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.timeline-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.timeline-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+/* Wrapper para alinhar conteudo */
+.timeline-content {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 80vh;
+    /* Garante espaço para o ultimo item subir até o snap */
+    /* Remover qualquer propriedade de scroll do content, quem scrolla é o container timeline-container */
+    overflow: visible;
+}
+
+/* --- TÍTULOS --- */
+.timeline-main-title {
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(45deg, #0277bd, #00acc1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 2.5em;
+    letter-spacing: -1px;
+    position: relative;
+    z-index: 10;
+}
+
+.timeline-subtitle {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-light);
+    text-align: center;
+    font-size: 0.9em;
+    margin-bottom: 60px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 600;
+    position: relative;
+    z-index: 10;
+}
+
+/* --- LINHA E BARCO --- */
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 50px;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, transparent 0%, #4fc3f7 5%, #0288d1 50%, #01579b 95%, transparent 100%);
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.timeline-boat {
+    position: absolute;
+    left: 50%;
+    font-size: 2.8rem;
+    z-index: 30;
+    transition: top 0.2s ease-out;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+    margin-left: -20px;
+    top: 0;
+    transform: translateX(0);
+    /* JS lida com top */
+    animation: rockBoat 3s ease-in-out infinite;
+}
+
+@keyframes rockBoat {
+
+    0%,
+    100% {
+        transform: rotate(-8deg);
+    }
+
+    50% {
+        transform: rotate(8deg);
+    }
+}
+
+/* --- SEÇÕES ANUAIS --- */
+.timeline-year-section {
+    position: relative;
+    /* Altura suficiente para garantir scroll, mas não travar em tela cheia obrigatória */
+    min-height: 80vh;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 20px;
+    scroll-snap-align: start;
+    /* Onde o scroll vai parar */
+    scroll-margin-top: 20px;
+    /* Pequena margem para não colar no topo */
+}
+
+/* Header (Estado Base Locked) */
+.timeline-year-section h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5em;
+    color: #fff;
+    background: linear-gradient(135deg, #29b6f6 0%, #0277bd 100%);
+    padding: 15px 40px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(2, 119, 189, 0.3);
+    border: 2px solid #fff;
+    cursor: pointer;
+    user-select: none;
+    z-index: 5;
+    /* Always visible */
+    opacity: 1;
+    filter: none;
+    transform: scale(1);
+    transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.timeline-year-section h4:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(2, 136, 209, 0.8);
+    background: linear-gradient(135deg, #00c853 0%, #009624 100%);
+}
+
+/* Unlocked state: full visibility */
+.timeline-year-section h4.unlocked {
+    opacity: 1;
+    filter: none;
+    transform: scale(1);
+}
+
+
+/* Cards de Conteúdo */
+.timeline-section-content {
+    margin-top: 30px;
+    animation: expandContent 0.6s ease-out;
+    width: 100%;
+}
+
+@keyframes expandContent {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.timeline-row {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 40px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: var(--shadow-soft);
+}
+
+.timeline-row.reverse-layout {
+    flex-direction: row-reverse;
+}
+
+.timeline-text-col,
+.timeline-text-col p {
+    color: #1a237e;
+    font-weight: 500;
+    line-height: 1.6;
+    flex: 1;
+    text-align: left;
+    margin: 0;
+}
+
+.timeline-media-col {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.timeline-photo,
+.timeline-video {
+    max-width: 100%;
+    max-height: 250px;
+    border-radius: 12px;
+    border: 3px solid #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* --- MENSAGEM FINAL --- */
+.timeline-final-message {
+    margin-top: 100px;
+    margin-bottom: 50px;
+    padding: 60px 40px;
+    background: linear-gradient(135deg, rgba(255, 236, 179, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%);
+    backdrop-filter: blur(15px);
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(255, 215, 0, 0.2);
+    border: 2px solid #fff;
+    position: relative;
+    z-index: 10;
+
+    /* Scroll Snap Integration */
+    scroll-snap-align: start;
+    scroll-margin-top: 0px;
+    /* Snap natural no padding do container (40vh) */
+
+    /* TRUQUE: Subir visualmente o card para encontrar o barco (que está em 20%) */
+    /* Container Snap (40vh) + Translate (-15vh) = ~25vh (perto do barco) */
+    transform: translateY(-15vh);
+    margin-top: 15vh;
+    /* Compensa o translate para não encavalar */
+}
+
+.timeline-final-message h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #f57f17;
+    /* Laranja/Dourado escuro */
+    margin-bottom: 30px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-final-message p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #4a4a4a;
+    margin-bottom: 20px;
+}
+
+.final-quote {
+    margin-top: 40px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem !important;
+    color: #d84315 !important;
+    background: linear-gradient(45deg, #d84315, #ff6f00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: inline-block;
+}
+
+/* Mobile Fixes */
+@media (max-width: 768px) {
+    .timeline-line {
+        left: 20px;
+        width: 4px;
+        transform: none;
+    }
+
+    .timeline-boat {
+        left: 20px;
+        margin-left: -18px;
+        transform: translateX(-50%);
+    }
+
+    .timeline-year-section {
+        align-items: flex-start;
+    }
+
+    .timeline-year-section h4 {
+        margin-left: 50px;
+        font-size: 1.1em;
+        text-align: left;
+    }
+
+    .timeline-row,
+    .timeline-row.reverse-layout {
+        flex-direction: column !important;
+        margin-left: 45px;
+        width: auto;
+    }
+}
+
+/* --- HOME SCREEN GRID (RESTAURADO & POLIDO) --- */
+.windows-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    /* Aumentado para 40px para garantir separação clara */
+    padding: 0 20px;
+    max-width: 950px;
+    margin: 30px auto;
+    z-index: 10;
+    position: relative;
+    justify-items: center;
+}
+
+/* Animação "Dentro da Água" (Flutuação com descompasso) */
+@keyframes waterFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    33% {
+        transform: translateY(-6px) rotate(1deg);
+    }
+
+    66% {
+        transform: translateY(4px) rotate(-1deg);
+    }
+}
+
+.app-window {
+    background: linear-gradient(180deg, rgba(225, 245, 254, 0.85) 0%, rgba(179, 229, 252, 0.85) 100%);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 25px;
+    width: 100%;
+    height: 130px;
+    /* Um pouco mais alto */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    text-align: center;
+    color: #01579b;
+    font-weight: 700;
+    font-size: 1.15rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    user-select: none;
+    text-shadow: none;
+
+    /* Aplica a animação de flutuação */
+    animation: waterFloat 6s ease-in-out infinite;
+}
+
+/* Descompasso na animação para parecer orgânico */
+.app-window:nth-child(odd) {
+    animation-duration: 7s;
+    animation-delay: 0.5s;
+}
+
+.app-window:nth-child(even) {
+    animation-duration: 6s;
+    animation-delay: 0s;
+}
+
+.app-window:nth-child(3n) {
+    animation-duration: 8s;
+    animation-delay: 1s;
+}
+
+.app-window:hover {
+    animation-play-state: paused;
+    /* Para ao passar o mouse */
+    transform: translateY(-8px) scale(1.05);
+    /* Sobe e cresce */
+    background: linear-gradient(180deg, #fff 0%, #e1f5fe 100%);
+    box-shadow: 0 20px 40px rgba(1, 87, 155, 0.3);
+    border-color: #fff;
+    z-index: 20;
+}
+
+/* Responsividade para Mobile */
+@media (max-width: 768px) {
+    .windows-grid {
+        grid-template-columns: 1fr;
+        /* 1 Coluna no celular */
+        gap: 20px;
+        padding: 0 40px;
+    }
+}
+
+.main-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4.5rem;
+    color: #37474f;
+    /* Cinza escuro/Azul */
+    text-align: center;
+    margin-top: 8vh;
+    margin-bottom: 10px;
+    text-shadow: none;
+    /* Remove sombra branca se houver */
+    position: relative;
+    z-index: 10;
+}
+
+.main-subtitle {
+    font-family: 'Inter', sans-serif;
+    color: #546e7a;
+    /* Cinza médio */
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+    font-weight: 500;
+    /* Um pouco mais de peso */
+    position: relative;
+    z-index: 10;
+    letter-spacing: 1px;
+}
+
+.module-button {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    padding: 12px 28px;
+    background: #fff;
+    color: var(--primary-blue);
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.module-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    color: var(--deep-blue);
+}

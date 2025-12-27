@@ -1,0 +1,139 @@
+/* O .quiz-container herda do .module-container, mas centralizamos e estilizamos */
+.quiz-container {
+    background-color: #fff5f7; /* Fundo rosa bem claro (apaixonado) */
+    max-width: 700px;
+    text-align: center;
+    border: 2px solid #ffb6c1; /* Borda rosa claro */
+    box-shadow: 0 10px 30px rgba(255, 100, 150, 0.3); /* Sombra rosa */
+}
+
+/* Título Romântico (usa a fonte importada no MainAppContent.css) */
+.quiz-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.8em;
+    font-weight: 700;
+    color: #d6336c; /* Rosa escuro (cor de batom) */
+    margin-bottom: 10px;
+}
+
+/* Adiciona corações ao título */
+.quiz-title::before,
+.quiz-title::after {
+    content: '💖';
+    font-family: 'Inter', sans-serif;
+    font-size: 0.5em;
+    margin: 0 10px;
+    opacity: 0.7;
+}
+
+.quiz-question-container {
+    background-color: #ffe0e5; /* Rosa mais claro */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ffc2d1;
+}
+
+.quiz-question-number {
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #d6336c;
+    opacity: 0.8;
+}
+
+.quiz-question {
+    font-size: 1.4em;
+    font-weight: 600;
+    color: #333;
+    margin-top: 5px;
+}
+
+.quiz-options {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 coluna em mobile */
+    gap: 12px;
+}
+
+/* Em telas maiores, 2 colunas */
+@media (min-width: 600px) {
+    .quiz-options {
+        grid-template-columns: 1fr 1fr; /* 2 colunas */
+    }
+}
+
+.quiz-option {
+    padding: 15px;
+    font-size: 1em;
+    border-radius: 30px; /* Botões arredondados (pílula) */
+    border: 2px solid #ffc2d1; /* Borda rosa */
+    background-color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.quiz-option:hover {
+    background-color: #ffe0e5; /* Rosa claro ao passar o mouse */
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.quiz-option:disabled {
+    cursor: not-allowed;
+    opacity: 0.9;
+}
+
+/* Estilos de feedback */
+.quiz-option.correct {
+    background-color: #e0ffe0; /* Verde claro */
+    border-color: #006400;
+    color: #006400;
+    transform: scale(1.02);
+} /* 🚨 A CHAVE } FALTANTE ESTAVA AQUI 🚨 */
+
+.quiz-option.incorrect {
+    background-color: #ffe0e0; /* Vermelho claro */
+    border-color: #a00000;
+    color: #a00000;
+    opacity: 0.7;
+}
+
+.quiz-feedback {
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* --- Tela de Resultado --- */
+.quiz-result {
+    text-align: center;
+}
+
+.result-score {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.result-message {
+    font-size: 1.5em;
+    font-style: italic;
+    color: #d6336c;
+    margin-top: 10px;
+    font-family: 'Dancing Script', cursive; /* Fonte romântica */
+}
+
+/* Grupo de botões centralizados (para Sair, Voltar, Reiniciar) */
+.quiz-button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Espaço entre os botões */
+    margin-top: 25px;
+}
+
+/* O botão 'module-button' já existe, mas o 'back-button' pode ter estilo sutil */
+.back-button {
+    background-color: rgba(0, 0, 0, 0.05); /* Mais sutil */
+}
+.back-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
